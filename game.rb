@@ -44,31 +44,113 @@ end
 
 
 def character_creation()
+    puts "\n"
+puts "Welcome to the character creation screen"
+puts "\n"
+
+# Initializing variables
+name = nil
+player_gender = nil
+age = nil
+prompt_again = true
+
+def character_creation()
+    puts "\n"
     puts "Welcome to the character creation screen"
     puts "\n"
-    puts "Press N to change your Name"
-    puts "Press G to change your Gender"
-    puts "Press A to change your Age"
-    character_creation_input = gets.chomp
-    
-    loop do
-    if character_creation_input == "N" || character_creation_input == "n"
+  
+    name = nil
+    player_gender = nil
+    age = nil
+    prompt_again = true
+  
+    while prompt_again
+      if !name
         puts "\n"
         puts "What would you like to be called?"
-        name = gets.chomp
-    end 
-
-    if character_creation_input == "G" || character_creation_input == "n"
-        puts"\n"
-        puts "Would you like to be a man or women"
-        player_gender = gets.chomp
-
-        if 
-        
-
-
-
-end 
+        puts "\n"
+        name_input = gets.chomp
+        if name_input.match(/^[a-zA-Z]+$/)
+          name = name_input
+          puts "\n"
+          puts "Name updated to #{name}"
+        else
+          puts "\n"
+          puts "Name must only contain letters, and no spaces"
+          puts "\n"
+        end
+      elsif !player_gender
+        puts "\n"
+        puts "Press M for Male, F for Female"
+        puts "\n"
+        gender_input = gets.chomp.downcase
+        case gender_input
+        when "m"
+          player_gender = "Male"
+          puts "\n"
+          puts "Gender updated to #{player_gender}"
+          puts "\n"
+        when "f"
+          player_gender = "Female"
+          puts "\n"
+          puts "Gender updated to #{player_gender}"
+          puts "\n"
+        else
+          puts "\n"
+          puts "Invalid input, please choose M or F"
+          puts "\n"
+        end
+      elsif !age
+        puts "\n"
+        puts "What is your character's age?"
+        puts "\n"
+        age_input = gets.chomp
+        if age_input.match(/^\d+$/)
+          age = age_input
+          puts "\n"
+          puts "Age updated to #{age}"
+          puts "\n"
+        else
+          puts "\n"
+          puts "Age must be a number"
+          puts "\n"
+        end
+      else
+        puts "\n"
+        puts "Your character's name is #{name}, gender is #{player_gender}, and age is #{age}."
+        answer = nil
+        until [:y, :n].include?(answer)
+          puts "\n"
+          puts "Would you like to edit anything else? Y for yes and N to end character creation"
+          puts "\n"
+          answer = gets.chomp.downcase.to_sym
+          if ![:y, :n].include?(answer)
+            puts "\n"
+            puts "Invalid input, please choose Y or N"
+          end
+        end
+        if answer == :y
+          puts "\nPress N to change your name\nPress G to change your gender\nPress A to change your age"
+          puts "\n"
+          field_to_edit = gets.chomp.downcase
+          case field_to_edit
+          when "n"
+            name = nil
+          when "g"
+            player_gender = nil
+          when "a"
+            age = nil
+          else
+            puts "\n"
+            puts "Invalid input, please choose N, G, or A"
+            puts "\n"
+          end
+        else
+          prompt_again = false
+        end
+      end
+    end
+  end  
 
 
 #skapar en funktion som påbörja användarens story
@@ -81,9 +163,9 @@ def story()
     puts "YEAR 4042"
     puts "\n"
 
-    puts "the time is precisely 7 o'clock. You wake up shocked by the blajbdlajbdjabd. suddenly and old shortman appeared"
+    puts "the time is precisely 7 o'clock. You wake up shocked by the blajbdlajbdjabd. suddenly an old shortman appeared"
     puts"\n"
-    puts "Youngling! We seek your Help! We see that you have the pontenial to be our village coffe warrior, something many men dream of. please accept this rank to help the coffe levels this village possesses."
+    puts "Youngling! We seek your Help! We see that you have the pontenial to be our village coffe warrior, something many men dream of. Please accept this rank to help the coffe levels this village possesses."
     puts"\n"
     puts "CHOOSE BETWEEN THE OPTIONS AVAILABLE"
     puts"\n"

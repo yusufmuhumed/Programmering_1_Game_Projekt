@@ -1,1 +1,0 @@
-Jonathan Bergfast: Nästa vecka skall jag koda klart min character creation samt påbörja lägga in mina hjälpfunktioner i main funtionen
