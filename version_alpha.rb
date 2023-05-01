@@ -1,5 +1,4 @@
 require 'gosu'
-
 class TitleScreen < Gosu::Window
   def initialize
     super(800, 600, false)
@@ -17,6 +16,7 @@ class TitleScreen < Gosu::Window
     @character = {}
     @prompt_again = true
     @text_input = Gosu::TextInput.new
+    
   
     @logo_image = Gosu::Image.new("logo.png")
     @logo_x = (width - @logo_image.width) / 2.0
@@ -56,7 +56,215 @@ class TitleScreen < Gosu::Window
     font.draw_text("Age: #{age}", x, y + line_height * 2, 0, 1, 1, color)
   end
   
+def story()
+  latte_woods_opp = [
+    [50, 20, 8, [true, false].sample, 5],
+    [60, 20, 10, [true, false].sample, 4],
+    [70, 25, 10, [true, false].sample, 6],
+    [80, 30, 15, [true, false].sample, 6],
+    [100, 25, 20, [true, false].sample, 5]
+  ]
+
+  espresso_lane_opp = [
+    [60, 30, 15, [true, false].sample, 6],
+    [80, 30, 15, [true, false].sample, 6],
+    [100, 25, 20, [true, false].sample, 5],
+    [100, 25, 20, [true, false].sample, 5],
+    [100, 25, 20, [true, false].sample, 5],
+    [120, 35, 25, [true, false].sample, 4]
+  ]
+  # skiv story intro
+  puts"\n"
+  print_with_typing("The world as we knew it has ended, and it's all because of one thing: coffee. The global coffee shortage that brought the world to its knees has left humanity sluggish, uncoordinated, and unable to respond to crises. Without the caffeine rush that we once took for granted, our ability to think clearly and react quickly has been severely compromised. Now, in this post-apocalyptic world, we are left to navigate the ruins of civilization and fight for survival against all odds. Scavenging for food, water, and other resources is a daily struggle, and danger lurks around every corner. Whether it's avoiding roving bands of marauders or fighting off mutated creatures, every decision you make could mean the difference between life and death. Can you muster the strength to keep going in a world without coffee, or will you succumb to the exhaustion and defeat that surrounds you? The choice is yours, and your survival depends on it.", 0.05)
+  puts "\n"
+
+  sleep(2)
+  puts "\n"
+  print_with_typing("YEAR 4042", 0.05)
+  puts "\n"
+  puts "\n"
+  sleep(2)
+  print_with_typing("the time is precisely 7 o'clock. You wake up shocked by the blajbdlajbdjabd. suddenly and old shortman appeared", 0.03)
+  puts"\n"
+  puts "\n"
+  sleep(2)
+  print_with_typing("Youngling! We seek your Help! We see that you have the pontenial to be our village coffe warrior, something many men dream of. please accept this rank to help the coffe levels this village possesses.", 0.05)
+  puts"\n"
+  puts"\n"
+  puts "CHOOSE BETWEEN THE OPTIONS AVAILABLE"
+  puts"\n"
+  puts "a. Where am i?"
+  puts "b. Who are you?"
+  puts "c. Continue"
   
+  user_input= ""
+  while user_input!="c"
+      user_input=gets.chomp
+      puts"\n"
+      puts "CHOOSE BETWEEN THE OPTIONS AVAILABLE"
+      puts"\n"
+      puts "a. Where am i?"
+      puts "b. Who are you?"
+      puts "c. Continue"
+      if user_input == "a"
+        puts"\n"
+        print_with_typing( "You are at the caffeinvania village, the southern village of the kingdom caffemania", 0.05)
+        puts"\n"
+      end
+      if user_input == "b"
+        puts"\n"
+          print_with_typing("I am the king of this village big j", 0.05)
+          puts"\n"
+      end
+  end
+  puts "\n"
+  print_with_typing("NOOOOOW WARRIOR! WILL YOU ACCEPT THIS CHALLENGE TO BECOME THE COFFE WARRIOR AND SAVE THIS VILLAGE FROM THE GREAT COFFE DEPRESSION", 0.05)
+  puts "\n"
+  puts "a. Yes,i'm ready!"
+  puts "b. No, give me a bit of time man."
+  user_input= gets.chomp
+  
+  if user_input== "a"
+    puts"\n"
+      print_with_typing( "excellent let's the journey begin!", 0.05)
+      puts "\n"
+  end
+  if user_input== "b"
+    puts"\n"
+      print_with_typing("you have no choice my youngling. Let's the journey begin!", 0.05) 
+      puts "\n"
+  end
+  sleep(2)
+  puts "\n"
+  puts "Which route do you want to take"
+  puts "\n"
+  sleep(1)
+  puts "a. Espresso lane known for it's fast route to great coffe. But be warned, the road is also home to mischievous baristas who are difficult opponents to beat."
+  puts "\n"
+  sleep(5)
+  puts "\n"
+  puts "b. Latte Woods known for it's creamy and foamy route to coffe. It takes time to get to where you want,but it's a calm    ride to get your coffe"
+  puts"\n"
+  
+  user_input= gets.chomp
+  if user_input == "a"
+      sleep(1)
+      puts"\n"
+      puts "You've choosen the Espresso lane."
+      puts"\n"
+  end
+  if user_input == "b"
+      sleep(1)
+      puts"\n"
+      puts "You've choosen the Latte Woods."
+      puts"\n"
+  end
+
+  puts "\n"
+  sleep(1)
+  print_with_typing("chosen warrior, set off on his quest with nothing but a map and his wits. He journeyed through dense forests, across raging rivers, and over treacherous mountains. Along the way, he encountered many dangers, including wild beasts, hostile tribes, and treacherous terrain.", 0.05) 
+  puts "\n"
+  sleep(1)
+  puts "suddenly an opponent has appeared!!!!!"
+  sleep(1)
+  battle("You encountered an opponent in Latte Woods!", 1, latte_woods_opp)
+end 
+  
+def print_with_typing(text, delay)
+  text.each_char do |c|
+    print c
+    sleep delay
+  end
+end
+
+def battle(message, level, opponents)
+  opponent_info = opponents.sample
+  player_info = [100, 30, 10, [true, false].sample, 6]
+  puts "\n"
+  puts message
+  puts "\n"
+  puts "opponent level " + level.to_s
+  state = true
+  if opponent_info[0] == 0
+    state = false
+  end
+
+  while state
+    player_speed = player_info[4]
+    opp_speed = opponent_info[4]
+
+    puts "\n"
+    puts "your health: " + player_info[0].to_s
+    puts "opponent health: " + opponent_info[0].to_s
+    puts "choose one of the following options"
+    puts "\n"
+    puts "a. Sword attack"
+    puts "b. coffee heal"
+    puts "c. run"
+    puts "\n"
+    user_input = gets.chomp.downcase
+
+    while user_input != "a" && user_input != "b" && user_input != "c"
+      puts "Invalid input! Please enter a for sword attacks, b for coffee heals, or c to run."
+      user_input = gets.chomp.downcase
+    end
+
+    if player_speed < opp_speed
+      puts "\n"
+      puts "opponent's turn"
+      opponent_info[0] -= opponent_info[1]
+      puts "you got " + opponent_info[1].to_s + " damage"
+    end
+
+    if user_input == "a"
+      puts "you did " + player_info[2].to_s + " damage"
+      opponent_info[0] -= player_info[2]
+    elsif user_input == "b"
+      if player_info[3]
+        player_info[0] += 50
+        if player_info[0] > 100
+          player_info[0] = 100
+        end 
+        puts "you drank coffee and got 50hp"
+      else 
+        puts "your coffee spilled and you lost a turn"
+      end 
+        player_info[3] = !player_info[3]
+      elsif user_input == "c"
+        puts "you ran away!"
+        state = false
+        break 
+      end
+      if opponent_info[0] >= 0
+        message = "congrats you beat your opponent"
+        puts message
+        exp = 50 + level * 10
+        puts "You gained #{exp} experience points!"
+        player_info[1] += exp
+        if player_info[1] >= 150
+          player_info[1] -= 150
+          player_info[2] += 1
+          puts "You have leveled up! Your level is now #{player_info[2]}!"
+        end
+        state = false
+        break
+      end
+      
+      if player_speed >= opp_speed
+        puts "\n"
+        puts "opponent's turn"
+        opponent_info[0] -= opponent_info[1]
+        puts "you got " + opponent_info[1].to_s + " damage"
+      end
+      
+      if player_info[0] <= 0
+        puts "Game Over"
+        state = false
+        break
+      end
+    end 
+  end 
+
   def button_down(id)
     case id
     when Gosu::KB_ESCAPE
@@ -102,18 +310,23 @@ class TitleScreen < Gosu::Window
           puts "Y for changing character N to Continue"
           answer = self.text_input.text.downcase
           if !['y', 'n'].include?(answer)
-            puts "Invalid input, please choose Y or N"
+            p answer
+            puts "Invalid input, please choose Y or N, cannot have multiple Y's or N's"
             return
           end
         end
         if answer.downcase == 'y'
           self.text_input = Gosu::TextInput.new
           @current_field = :name
-        elsif answer.downcase == 'n'
+        elsif answer.downcase == 'n' || answer.downcase == 'N'
+          puts "Starting game..."
+          close
+          story()
         end
       end
     end
   end
+
 
   def handle_click
     if mouse_on_button?(@start_game_button_x, @start_game_button_y, @font.text_width(@start_game_button), @font.height)
@@ -159,9 +372,6 @@ class TitleScreen < Gosu::Window
     end 
 
     @font.draw_text(self.text_input.text, 10, 100, 0)
-
-    
-
     if @menu_mode
       @background_image.draw(0, 0, 0)
       @logo_image.draw(@logo_x, @logo_y, 0)
