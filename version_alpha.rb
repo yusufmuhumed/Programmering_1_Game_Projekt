@@ -293,6 +293,25 @@ def battle(player_info,message,opponent_info,level)
   
 end
 
+def riddle(riddle,answer)
+  puts riddle
+  puts "\n"
+  puts "what is the answer youngling?"
+  user_input = gets.chomp
+  state=true
+  while state
+      if user_input.downcase == answer
+          puts "you've got the right answer youngling. congrats!!!."
+          state = false
+      end
+      if user_input.downcase != answer
+          puts "you've got the wrong answer"
+          user_input = gets.chomp
+      end
+          
+  end
+end
+
   def button_down(id)
     case id
     when Gosu::KB_ESCAPE
