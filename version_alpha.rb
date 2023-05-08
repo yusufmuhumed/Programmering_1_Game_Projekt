@@ -2,7 +2,7 @@ require 'gosu'
 require_relative "battle.rb"
 require_relative "story.rb"
 
-
+puts "hej"
 class TitleScreen < Gosu::Window
   def initialize
     super(800, 600, false)
